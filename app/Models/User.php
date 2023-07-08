@@ -23,6 +23,7 @@ class User extends Authenticatable implements HasMedia
         'email',
         'phone_number',
         'password',
+        'is_admin'
     ];
 
     /**

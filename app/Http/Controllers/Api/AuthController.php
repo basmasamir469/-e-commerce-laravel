@@ -15,7 +15,7 @@ class AuthController extends Controller
             'password'=>'required'
         ]);
         if($validator->fails()){
-      return response()->json(['data'=>[],'status'=>403,'message'=>$validator->errors()->first()]);
+      return response()->json(['data'=>[],'status'=>422,'message'=>$validator->errors()->first()]);
         }
     if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
         $user=$request->user();

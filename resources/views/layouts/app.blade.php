@@ -33,11 +33,6 @@
     <li class="nav-item d-none d-sm-inline-block">
         <a href="{{ route('login') }}" class="nav-link">@lang('Log in')</a>
       </li>
-        {{-- @if (Route::has('register'))
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('register') }}" class="nav-link">Register</a>
-        </li>
-        @endif --}}
     @endauth
     <li class="nav-item d-none d-sm-inline-block">
         <div class="btn-group">
@@ -99,7 +94,7 @@
     <div class="sidebar">
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-        <img src="{{auth()->user()->image}}" class="img-circle elevation-2" alt="User Image">
+        <img src="{{auth()->user()->image?auth()->user()->image:asset('dist/img/avatar4.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
          <a href="#" class="d-block">{{auth()->user()->name}}</a>

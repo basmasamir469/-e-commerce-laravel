@@ -4,9 +4,16 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Mail\ResetPassword;
+use Carbon\Carbon;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+
 
 class UserController extends Controller
 {
@@ -108,5 +115,73 @@ public function destroy($id)
 User::find($id)->delete();
 flash(__('User deleted successfully'))->success();
 return redirect()->route('users.index');
-}    
+} 
+
+public function sendemail(Request $request){
+    $validator=Validator()->make($request->all(),[
+        'email'=>'required|exists:users'
+    ]);
+    if($validator->fails()){
+        flash($validator->errors()->first())->error();
+        return redirect()->back();
+    }
+    $user=User::where('email',$request->email)->first();
+    if(!$user){
+        flash(__('email is not found'))->error();
+        return redirect()->back();
+    }
+    $token=Str::random(64);
+    DB::table('password_resets')->insert([
+    'email'=>$request->email,
+    'token'=>$token,
+    'created_at'=>Carbon::now()
+    ]);
+    $mail=Mail::to($request->email)
+    ->bcc('basmaelazony@gmail.com')
+    ->send(new ResetPassword($request->email,$token));
+    if($mail){
+        flash(__('reset link has been sent to your email'))->success();
+    }
+    else{
+        flash(__('something wrong is happened please try again'))->error();
+    }
+    return redirect()->back();
+
+    
+}
+
+public function showResetPasswordForm($email,$token){
+    return view('website.auth.passwords.reset',compact('token','email'));
+}
+
+public function submitResetPasswordForm(Request $request){
+
+    $validator=Validator()->make($request->all(),[
+        'email'=>'required|exists:users',
+        'password'=>'required|min:8|confirmed'
+    ]);
+    if($validator->fails()){
+        flash($validator->errors()->first())->error();
+        return redirect()->back();
+    }
+    $reset=DB::table('password_resets')->where(['email'=>$request->email,'token'=>$request->token])->first();
+    if(!$reset){
+        flash(__('invalid token'))->error();
+        return redirect()->back();
+    }
+    $updated=User::where('email',$request->email)->update([
+        'password'=>Hash::make($request->password)
+    ]);
+    if($updated){
+        DB::table('password_resets')->where(['email'=> $request->email])->delete();
+        flash(__('password updated successfully'))->success();
+    }
+    else{
+        flash(__('something wrong is happened please try again'))->error();
+    }
+    return redirect()->route('users.login');
+
+
+}
+
 }

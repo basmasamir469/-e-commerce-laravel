@@ -14,8 +14,8 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         //
-        $arr_ar=array('بلوزات','بناطيل','فساتين','اكسسوارات','بيجامات');
-        $arr_en=array('blouses','pants','dresses','accessories','pyjamas');
+        $arr_ar=array('بلوزات','بناطيل','فساتين','اكسسوارات','بيجامات','قمصان رجالي','تيشرتات');
+        $arr_en=array('blouses','pants','dresses','accessories','pyjamas','shirts for men','t-shirts');
         foreach($arr_ar as $key => $value){
             Category::create([
                 'category_name'=>['en'=>$arr_en[$key],'ar'=>$arr_ar[$key]]
