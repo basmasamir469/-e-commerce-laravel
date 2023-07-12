@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Categories\storeCategoryRequest;
 use App\Http\Requests\Categories\updateCategoryRequest;
+use App\Http\Resources\categories\CategoryCollection;
+use App\Http\Resources\categories\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -17,7 +19,7 @@ class CategoryController extends Controller
     {
         //
         $categories=Category::paginate(10);
-        return response()->json($categories,200);
+        return response()->json(new CategoryCollection($categories),200);
     }
 
     /**
@@ -41,7 +43,7 @@ class CategoryController extends Controller
         //
         $category=Category::create($request->all());
         if($category){
-            return response()->json(['data'=>$category,'status'=>200,'message'=>'stored successfully']);
+            return response()->json(['data'=>new CategoryResource($category),'status'=>200,'message'=>'stored successfully']);
         }
         return response()->json(['data'=>[],'status'=>500,'message'=>'failed to store']);
     }
@@ -81,7 +83,7 @@ class CategoryController extends Controller
         $category=Category::findOrFail($id);
         $updated=$category->update($request->all());
         if($updated){
-            return response()->json(['data'=>$category->fresh(),'status'=>200,'message'=>'updated successfully']);
+            return response()->json(['data'=>new CategoryResource($category->fresh()),'status'=>200,'message'=>'updated successfully']);
         }
             return response()->json(['data'=>[],'status'=>500,'message'=>'failed to update']);
     }

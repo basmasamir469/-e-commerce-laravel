@@ -49,4 +49,7 @@ class User extends Authenticatable implements HasMedia
     public function getImageAttribute(){
         return $this->getFirstMediaUrl('user_images');
     }
+    public function cart(){
+        return $this->hasOne(Cart::class);
+    }
 }

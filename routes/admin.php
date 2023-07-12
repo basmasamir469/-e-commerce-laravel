@@ -25,4 +25,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale().'/admin/',
     Route::resource('users','UserController');
     Route::resource('products','ProductController');
     Route::resource('Categories','CategoryController');
+    Route::resource('orders','OrderController');
+    Route::get('orders/accept/{id}','OrderController@acceptOrders')->name('orders.accept');
+    Route::get('orders/reject/{id}','OrderController@rejectOrders')->name('orders.reject');
 });

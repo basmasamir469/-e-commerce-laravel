@@ -23,4 +23,11 @@ class Product extends Model implements HasMedia
     public function getImageAttribute(){
         return $this->getFirstMediaUrl('product_images');
     }
+    public function orders(){
+        return $this->belongsToMany(Order::class)->withPivot(['price','quantity']);
+    }
+
+    public function carts(){
+        return $this->belongsToMany(Cart::class)->withPivot(['price','quantity']);
+    }
 }

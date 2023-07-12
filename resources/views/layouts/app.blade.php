@@ -177,6 +177,15 @@
                   </li>
                 </ul>
               </li>
+
+              <li class="nav-item">
+                <a href="{{route('orders.index')}}" class="nav-link">
+                  <i class="nav-icon fas fa-cart-plus"></i>
+                  <p>
+                       @lang('Orders')
+                  </p>
+                </a>
+              </li>
     
     
 
@@ -242,6 +251,21 @@
           $(".alert").delay(3000).slideUp(300);
     });
 </script>
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+<script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('92be6834554ed5b6a43d', {
+      cluster: 'mt1'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      alert(JSON.stringify(data));
+    });
+  </script>
 @stack('scripts')
 
 </body>

@@ -2,7 +2,6 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use App\Mail\ResetPassword;
 use Carbon\Carbon;
@@ -125,7 +124,7 @@ public function sendemail(Request $request){
         flash($validator->errors()->first())->error();
         return redirect()->back();
     }
-    $user=User::where('email',$request->email)->first();
+    $user=User::where(['email'=>$request->email,'is_admin'=>0])->first();
     if(!$user){
         flash(__('email is not found'))->error();
         return redirect()->back();

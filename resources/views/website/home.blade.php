@@ -40,131 +40,21 @@
                 <i class="fas fa-star"></i>
             </div>
          <div class="price">
-            <span>{{$product->price}}</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
+            <span>{{$product->price}}</span>
+            <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" value="{{ $product->id }}" name="id">
+                <input type="hidden" value="{{ $product->product_name }}" name="product_name">
+                <input type="hidden" value="{{ $product->price }}" name="price">
+                <input type="hidden" value="{{ $product->image }}"  name="image">
+                <input type="hidden" value="1" name="quantity">
+             <button class="btn btn-transparent" type="submit"> <a><i class="fas fa-cart-shopping"></i></a></button>
+            </form>
          </div>
             
         </div>
         @endforeach
 
-
-        {{-- <div class="product">
-            <img src="{{asset('front/images/products/f2.jpg')}}" alt="">
-            <h6>adidas</h6>
-            <h3>cartoon astronout t-shirts</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-         <div class="price">
-            <span>$78</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
-         </div>
-            
-        </div> --}}
-
-        {{-- <div class="product">
-            <img src="{{asset('front/images/products/f3.jpg')}}" alt="">
-            <h6>adidas</h6>
-            <h3>cartoon astronout t-shirts</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-         <div class="price">
-            <span>$78</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
-         </div>
-            
-        </div> --}}
-
-        {{-- <div class="product">
-            <img src="{{asset('front/images/products/f4.jpg')}}" alt="">
-            <h6>adidas</h6>
-            <h3>cartoon astronout t-shirts</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-         <div class="price">
-            <span>$78</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
-         </div>
-            
-        </div> --}}
-
-        {{-- <div class="product">
-            <img src="{{asset('front/images/products/f5.jpg')}}" alt="">
-            <h6>adidas</h6>
-            <h3>cartoon astronout t-shirts</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-         <div class="price">
-            <span>$78</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
-         </div>
-            
-        </div> --}}
-
-        {{-- <div class="product">
-            <img src="{{asset('front/images/products/f6.jpg')}}" alt="">
-            <h6>adidas</h6>
-            <h3>cartoon astronout t-shirts</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-         <div class="price">
-            <span>$78</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
-         </div>
-            
-        </div> --}}
-
-        {{-- <div class="product">
-            <img src="{{asset('front/images/products/f7.jpg')}}" alt="">
-            <h6>adidas</h6>
-            <h3>cartoon astronout t-shirts</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-         <div class="price">
-            <span>$78</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
-         </div>
-            
-        </div> --}}
-
-        {{-- <div class="product">
-            <img src="{{asset('front/images/products/f8.jpg')}}" alt="">
-            <h6>adidas</h6>
-            <h3>cartoon astronout t-shirts</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-         <div class="price">
-            <span>$78</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
-         </div>
-            
-        </div> --}}
     </div>
    
 </section>
@@ -193,154 +83,20 @@
                 <i class="fas fa-star"></i>
             </div>
          <div class="price">
-            <span>{{$product->price}}</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
+            <span>{{$product->price}}</span>
+            <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" value="{{ $product->id }}" name="id">
+                <input type="hidden" value="{{ $product->product_name }}" name="product_name">
+                <input type="hidden" value="{{ $product->price }}" name="price">
+                <input type="hidden" value="{{ $product->image }}"  name="image">
+                <input type="hidden" value="1" name="quantity">
+             <button class="btn btn-transparent" type="submit"> <a><i class="fas fa-cart-shopping"></i></a></button>
+            </form>
          </div>
             
         </div>
         @endforeach
-        {{-- <div class="product">
-            <img src="{{asset('front/images/products/n1.jpg')}}" alt="">
-            <h6>adidas</h6>
-            <h3>cartoon astronout t-shirts</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-         <div class="price">
-            <span>$78</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
-         </div>
-            
-        </div> --}}
-
-
-
-        {{-- <div class="product">
-            <img src="{{asset('front/images/products/n2.jpg')}}" alt="">
-            <h6>adidas</h6>
-            <h3>cartoon astronout t-shirts</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-         <div class="price">
-            <span>$78</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
-         </div>
-            
-        </div> --}}
-
-
-        {{-- <div class="product">
-            <img src="{{asset('front/images/products/n3.jpg')}}" alt="">
-            <h6>adidas</h6>
-            <h3>cartoon astronout t-shirts</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-         <div class="price">
-            <span>$78</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
-         </div>
-            
-        </div> --}}
-
-        {{-- <div class="product">
-            <img src="{{asset('front/images/products/n4.jpg')}}" alt="">
-            <h6>adidas</h6>
-            <h3>cartoon astronout t-shirts</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-         <div class="price">
-            <span>$78</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
-         </div>
-            
-        </div> --}}
-
-
-        {{-- <div class="product">
-            <img src="{{asset('front/images/products/n5.jpg')}}" alt="">
-            <h6>adidas</h6>
-            <h3>cartoon astronout t-shirts</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-         <div class="price">
-            <span>$78</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
-         </div>
-            
-        </div> --}}
-
-
-
-        {{-- <div class="product">
-            <img src="{{asset('front/images/products/n6.jpg')}}" alt="">
-            <h6>adidas</h6>
-            <h3>cartoon astronout t-shirts</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-         <div class="price">
-            <span>$78</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
-         </div>
-            
-        </div> --}}
-
-
-        {{-- <div class="product">
-            <img src="{{asset('front/images/products/n7.jpg')}}" alt="">
-            <h6>adidas</h6>
-            <h3>cartoon astronout t-shirts</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-         <div class="price">
-            <span>$78</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
-         </div>
-            
-        </div> --}}
-
-
-        {{-- <div class="product">
-            <img src="{{asset('front/images/products/n8.jpg')}}" alt="">
-            <h6>adidas</h6>
-            <h3>cartoon astronout t-shirts</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-         <div class="price">
-            <span>$78</span> <a href="#"><i class="fas fa-cart-shopping"></i></a>
-         </div>
-            
-        </div> --}}
         </div>
 </section>
 
@@ -370,18 +126,6 @@
         <h2>T-shirts</h2>
         <h6>new trendy prints</h6>
     </div>
-</div>
-</section>
-<section id="newsletters" style="background-image: url('{{asset("/front/images/banner/b14.png")}}');">
-<div class="new1">
-   <h2>sign up for newsletters</h2> 
-   <p>get email updates about your latest shop and <span>special offers</span></p>
-</div>
-<div class="new2">
-<form action="">
-    <input type="text" placeholder="your email address">
-    <input type="submit" value="sign up">
-</form>
 </div>
 </section>
 @endsection

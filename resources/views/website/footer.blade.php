@@ -1,3 +1,15 @@
+<section id="newsletters" style="background-image: url('{{asset("/front/images/banner/b14.png")}}');">
+    <div class="new1">
+       <h2>sign up for newsletters</h2> 
+       <p>get email updates about your latest shop and <span>special offers</span></p>
+    </div>
+    <div class="new2">
+    <form action="">
+        <input type="text" placeholder="your email address">
+        <input type="submit" value="sign up">
+    </form>
+    </div>
+    </section>    
 <footer>
     <div class="c1">
     <img src="{{asset('front/images/logo.png')}}" alt="">

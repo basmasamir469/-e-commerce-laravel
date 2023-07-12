@@ -23,11 +23,14 @@
 <!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="{{asset('forms/vendor/daterangepicker/daterangepicker.css')}}">
 <!--===============================================================================================-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" type="text/css" href="{{asset('forms/css/util.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('forms/css/main.css')}}">
+	<link rel="stylesheet" href="{{asset('front/css/style.css')}}">
 <!--===============================================================================================-->
 </head>
 <body>
+	@include('website.header')
 	<div class="limiter">
 		<div class="container-login100">
     @include('flash::message')
@@ -35,6 +38,7 @@
 
 	</div>
 	</div>
+	@include('website.footer')
 
 	
 <!--===============================================================================================-->
@@ -53,6 +57,7 @@
 	<script src="{{asset('forms/vendor/countdowntime/countdowntime.js')}}"></script>
 <!--===============================================================================================-->
 	<script src="{{asset('forms/js/main.js')}}"></script>
+	<script src="{{asset('front/js/custom.js')}}"></script>
     <script>
 		$(document).ready(function(){
 			$(".alert").delay(3000).slideUp(300);

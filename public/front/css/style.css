@@ -38,11 +38,14 @@ ul#menu li a{
 ul#menu li a:visited{
     color: black;
 }
-ul#menu li a.active,ul li a:hover{
+ul#menu li a:hover{
+    color:#088178;
+}
+ul#menu li a.active{
     color:#088178;
 }
 
-ul#menu li a:hover::after,ul li a.active::after{
+ul#menu li:not(#bell) a:hover::after,ul li a.active::after{
     content: "";
     position: absolute;
     width:50%;
@@ -1394,3 +1397,6 @@ width: 50%;
         width: 80%;
     }
   }
+.translate-middle{
+  transform:translate(-25%,-50%)!important;
+}

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Products\storeProductRequest;
 use App\Http\Requests\Products\updateProductRequest;
+use App\Http\Resources\products\ProductCollection;
+use App\Http\Resources\products\ProductResource;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -18,8 +20,10 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $products=Product::paginate(10);
-        return response()->json($products,200);
+        $products=Product::skip(0)
+        ->take(10)
+        ->get();
+        return response()->json(new ProductCollection($products),200);
     }
 
     /**
@@ -46,7 +50,7 @@ class ProductController extends Controller
             $product
             ->addMedia($request->image)
             ->toMediaCollection('product_images');
-            return response()->json(['data'=>$product,'status'=>200,'message'=>'stored successfully']);
+            return response()->json(['data'=>new ProductResource($product),'status'=>200,'message'=>'stored successfully']);
 
         }
         else{
@@ -94,9 +98,9 @@ class ProductController extends Controller
         ->addMedia($request->image)
         ->toMediaCollection('product_images');
         }
-        return response()->json(['data'=>$product,'status'=>200,'message'=>'updated successfully']);
+        return response()->json(['data'=>new ProductResource($product),'status'=>200,'message'=>'updated successfully']);
        }
-       return response()->json(['data'=>$product,'status'=>200,'message'=>'failed to update']);
+       return response()->json(['data'=>[],'status'=>500,'message'=>'failed to update']);
 
 
 
