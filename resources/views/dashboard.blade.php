@@ -12,7 +12,7 @@
   
         <div class="info-box-content">
           <span class="info-box-text">@lang('Users')</span>
-          <span class="info-box-number">{{$user->count()}}</span>
+          <span class="info-box-number">{{count($user->where('is_admin',0)->get())}}</span>
         </div>
         <!-- /.info-box-content -->
       </div>
