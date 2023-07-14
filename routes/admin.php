@@ -16,7 +16,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 Route::group(['prefix'=>'admin'],function(){
-    Auth::routes();
+    Auth::routes(["register"=>'false']);
 });
 Route::group(['prefix' => LaravelLocalization::setLocale().'/admin/',
 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth','AdminAccess']

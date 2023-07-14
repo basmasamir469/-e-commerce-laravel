@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
-    //
+    //using darryldcode shopping cart package
+    
     public function cartList(){
     $items=Cart::getContent();
     return view('website.cart',compact('items'));

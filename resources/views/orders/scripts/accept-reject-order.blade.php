@@ -19,6 +19,8 @@
                   if(data.status==1){
                $(`#orderStatus${order_id}`).empty()
                $(`#orderStatus${order_id}`).append('<span class="badge badge-success">{{__("Accepted")}}</span>')
+               $(`button#accept${order_id}`).remove()
+               $(`button#reject${order_id}`).remove()
                   }
                 }
             });
@@ -44,6 +46,8 @@
                     $(`#rejectModal${order_id}`).modal('hide')
                $(`#orderStatus${order_id}`).empty()
                $(`#orderStatus${order_id}`).append('<span class="badge badge-danger">{{__("Cancelled")}}</span>')
+               $(`button#reject${order_id}`).remove()
+               $(`button#accept${order_id}`).remove()
                   }
                 }
             });

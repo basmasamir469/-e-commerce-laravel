@@ -21,7 +21,16 @@ class CartController extends Controller
         try {
             DB::beginTransaction();
             $total_cost=0;
-            $product=Product::find($productId);
+            $product=Product::findOrFail($productId);
+            $validator=Validator()->make($request->all(),[
+                'quantity'=>"numeric|min:0|max:$product->quantity"
+            ]);
+            if($validator->fails()){
+                return response()->json([
+                    'status'=>0,
+                    'message'=>$validator->errors()->first()
+                    ]);            
+            }
             if(!$request->user()->cart){
               $cart=Cart::create([
                 'user_id'=>$request->user()->id,
@@ -55,6 +64,17 @@ class CartController extends Controller
 
     public function updateCart(Request $request,$productId){
         try {
+            DB::commit();
+            $product_quantity=Product::findOrfail($productId)->quantity;
+            $validator=Validator()->make($request->all(),[
+                'quantity'=>"numeric|min:0|max:$product_quantity"
+            ]);
+            if($validator->fails()){
+                return response()->json([
+                    'status'=>0,
+                    'message'=>$validator->errors()->first()
+                    ]);            
+            }
             $total_cost=0;
             $cart=$request->user()->cart;
             $updated=$cart->products()->updateExistingPivot($productId,[
@@ -66,6 +86,7 @@ class CartController extends Controller
               $cart->update([
                 'total_cost'=>$total_cost
               ]);
+              DB::commit();
             return response()->json([
                 'data'=>$updated,
                 'status'=>1,
@@ -73,6 +94,7 @@ class CartController extends Controller
                 ]);
             }
         catch (\Exception $e) {
+            DB::rollback();
             return response()->json([
                 'status'=>0,
                 'message'=>$e->getMessage()
@@ -132,12 +154,6 @@ class CartController extends Controller
             //  dd($products);
              foreach($products as $product){
               $order->products()->attach($product->id,['price'=>$product->pivot->price,'quantity'=>$product->pivot->quantity]);
-
-            // update quantity of products if order is accepted
-            //   $updated_quantity=$product->associatedModel->quantity -  $product->quantity;
-            //   Product::findOrFail($product->id)->update([
-            //     'quantity'=>$updated_quantity
-            //   ]);
              }
              $request->user()->cart()->delete();
              DB::commit();

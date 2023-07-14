@@ -43,9 +43,9 @@
         </td>
         <td>{{$order->total_cost}} EGP</td>
         <td>{{\Carbon\Carbon::parse($order->created_at)->format('d-m-Y')}}</td>
-        <td><button order-id="{{$order->id}}"  class="btn btn-success acceptOrder">@lang('Accept')</button></td>
+        <td><button order-id="{{$order->id}}" id="accept{{$order->id}}" class="btn btn-success acceptOrder @if($order->status==0||$order->status==2) d-none @endif">@lang('Accept')</button></td>
           <td>
-      <button type="button" class="btn btn-danger" data-toggle="modal"  data-target="#rejectModal{{$order->id}}">
+      <button type="button" class="btn btn-danger @if($order->status==0||$order->status==2) d-none @endif" id="reject{{$order->id}}" data-toggle="modal"  data-target="#rejectModal{{$order->id}}">
         @lang('Reject')
       </button> 
       <!-- Modal -->

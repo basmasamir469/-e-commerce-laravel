@@ -18,6 +18,7 @@
         <i class="fas fa-x"></i>
         <li><a href="{{route('home')}}" class="active">home </a></li>
         @auth
+
         <li class="dropdown dropdown-notifications" id="bell">
             <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" aria-expanded="false">
             <i class="fas fa-bell"></i>
@@ -57,7 +58,8 @@
           </span>
         </i></a></li>
         @auth
-        <div class="dropdown" style="margin-left:1.5rem;">
+        <div class="dropdown d-flex" style="margin-left:1.5rem;">
+            <img class="rounded-circle" src="{{auth()->user()->image?auth()->user()->image:auth()->user()->avatar}}" width="30px" height="30px">
             <a class="nav-link dropdown-toggle text-dark p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ Auth::user()->name }} <span class="caret"></span>
             </a>

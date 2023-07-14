@@ -9,7 +9,16 @@ Login
 						Sign In
 					</span>
 				</div>
-
+				@if ($errors->any())
+				<div class="alert alert-danger">
+					<ul>
+				@foreach ($errors->all() as $error)
+					<li>{{$error}}</li>
+				@endforeach
+					</ul>
+				</div>
+				@endif
+					
 				<form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
 					@csrf
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
@@ -57,6 +66,17 @@ Login
 						</button>
 						<a class="ml-3 mt-3" href="{{route('users.register')}}">Not Registered?</a>
 					</div>
+
+					<div class="social-auth-links text-center mb-3 mt-3">
+						<p class="mb-3">- OR -</p>
+						{{-- <a href="{{route('login.facebook')}}" class="btn btn-block btn-primary">
+						<i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+						</a> --}}
+						<a href="{{route('login.google')}}" class="btn btn-block btn-danger">
+						<i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+						</a>
+						</div>
+					
 				</form>
 			</div>
 	

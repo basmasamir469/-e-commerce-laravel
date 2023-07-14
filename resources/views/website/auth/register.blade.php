@@ -3,14 +3,24 @@
 Register
 @endsection
 @section('content')
+
 		<div class="wrap-login100">
 			<div class="login100-form-title" style="background-image: url('{{asset("/forms/images/bg-01.jpg")}}');">
 				<span class="login100-form-title-1">
 					Sign Up
 				</span>
 			</div>
+			@if ($errors->any())
+			<div class="alert alert-danger">
+				<ul>
+			@foreach ($errors->all() as $error)
+				<li>{{$error}}</li>
+			@endforeach
+				</ul>
+			</div>
+			@endif
 
-			<form class="login100-form validate-form" method="POST" action="{{ route('register') }}" autocomplete="off">
+			<form class="login100-form validate-form" method="POST" action="{{ route('register') }}" autocomplete="off" enctype="multipart/form-data">
 				@csrf
 				<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 					<span class="label-input100">Username</span>

@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,5 +30,10 @@ class AppServiceProvider extends ServiceProvider
         $lang=request()->header('X-Language')??'ar';
         $lang=str_contains($lang,'en')?'en':'ar';
         App::setLocale($lang);
-    }
+
+
+        Paginator::useBootstrapFive();
+        Paginator::useBootstrapFour();
+
+}
 }

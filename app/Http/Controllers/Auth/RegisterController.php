@@ -47,7 +47,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator($data)
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
@@ -66,12 +66,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user=User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'phone_number'=>$data['phone_number'],
-            'image'=>$data['image']
         ]);
+            $user->addMedia($data['image'])->toMediaCollection('user_images');
+        return $user;
     }
 }

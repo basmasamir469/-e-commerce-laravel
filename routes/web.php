@@ -26,6 +26,14 @@ Route::post('users/send-email','UserController@sendemail')->name('users.send_ema
 Route::get('users/reset-password/{email}/{token}','UserController@showResetPasswordForm')->name('users.show_reset_password_form');
 Route::post('users/update-password','UserController@submitResetPasswordForm')->name('users.submit_reset_password_form');
 
+// laravel socialite
+
+Route::get('login/google', 'Auth\LoginController@redirectToGoogle')->name('login.google');
+Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
+
+Route::get('login/facebook', 'Auth\LoginController@redirectToFacebook')->name('login.facebook');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleFacebookCallback');
+
 
 Route::group(['prefix' => LaravelLocalization::setLocale(),
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']],function(){
