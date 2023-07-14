@@ -3,7 +3,7 @@
 <h1>@lang('Users')</h1>
 @endsection
 @section('small-title')
- @lang(' users')
+ @lang('users')
 @endsection
 @section('content')
 <div class="card">
@@ -35,7 +35,7 @@
           <td>{{$user->name}}</td>
           <td>{{$user->email}}</td>
           <td> {{$user->phone_number}} </td>
-          <td><a href="{{route('users.edit',$user->id)}}" class="btn btn-warning">Edit</a></td>
+          <td><a href="{{route('users.edit',$user->id)}}" class="btn btn-warning">@lang('Edit')</a></td>
           <td>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
               @lang('Delete')

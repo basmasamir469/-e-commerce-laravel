@@ -72,12 +72,6 @@ class CartController extends Controller
             //  dd($products);
              foreach($products as $product){
               $order->products()->attach($product->id,['price'=>$product->price,'quantity'=>$product->quantity]);
-
-            // update quantity of products if order is accepted
-              $updated_quantity=$product->associatedModel->quantity -  $product->quantity;
-              Product::findOrFail($product->id)->update([
-                'quantity'=>$updated_quantity
-              ]);
              }
 
              DB::commit();

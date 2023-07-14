@@ -16,7 +16,7 @@ class OrderController extends Controller
     public function index()
     {
         //
-        $orders=Order::with(['user','products'])->paginate(10);
+        $orders=Order::orderBy('id','DESC')->with(['user','products'])->paginate(10);
         return view('orders.index',compact('orders'));
     }
 
@@ -31,12 +31,14 @@ class OrderController extends Controller
         $order->update([
          'status'=>2
         ]);
+        // update product quantity after order is accepted
         foreach($order->products as $product){
-            $updated_quantity= $product->quantity-$product->pivot->quantity;
+            $updated_quantity= $product->quantity - $product->pivot->quantity;
             $product->update([
              'quantity'=>$updated_quantity
             ]);
          } 
+         
          DB::commit();
         $data=[
         'admin'=>auth()->user()->name,

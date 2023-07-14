@@ -1,23 +1,64 @@
 @extends('layouts.app')
+@inject('user', "App\Models\User")
+@inject('category', "App\Models\Category")
+@inject('product', "App\Models\Product")
+@inject('order', "App\Models\Order")
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
+<div class="row">
+    <div class="col-md-3 col-sm-6 col-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-info"><i class="far fa-user"></i></span>
+  
+        <div class="info-box-content">
+          <span class="info-box-text">@lang('Users')</span>
+          <span class="info-box-number">{{$user->count()}}</span>
         </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
     </div>
-</div>
+
+    <div class="col-md-3 col-sm-6 col-12">
+        <div class="info-box">
+          <span class="info-box-icon bg-warning"><i class="fas fa-bars"></i></span>
+    
+          <div class="info-box-content">
+            <span class="info-box-text">@lang('Categories')</span>
+            <span class="info-box-number">{{$category->count()}}</span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+
+      <div class="col-md-3 col-sm-6 col-12">
+        <div class="info-box">
+          <span class="info-box-icon bg-success"><i class="fab fa-product-hunt"></i></span>
+    
+          <div class="info-box-content">
+            <span class="info-box-text">@lang('Products')</span>
+            <span class="info-box-number">{{$product->count()}}</span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+
+      <div class="col-md-3 col-sm-6 col-12">
+        <div class="info-box">
+          <span class="info-box-icon bg-danger"><i class="fas fa-cart-plus"></i></span>
+    
+          <div class="info-box-content">
+            <span class="info-box-text">@lang('Orders')</span>
+            <span class="info-box-number">{{$order->count()}}</span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+  
+  
+  
+</div>  
 @endsection

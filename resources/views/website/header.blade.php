@@ -16,7 +16,7 @@
     </div>
     <ul id="menu">
         <i class="fas fa-x"></i>
-        <li><a href="{{route('home')}}" class="active">home </a></li>
+        <li><a href="{{route('home')}}" class="active">@Lang('home') </a></li>
         @auth
 
         <li class="dropdown dropdown-notifications" id="bell">
@@ -32,25 +32,13 @@
              <a href="#" class="dropdown-item">
              @lang('no notifications')
             </a>
-            {{--
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-            </a>
-            <div class="dropdown-divider"></div> --}}
             </div>
             </div>
             </li>
     @endauth
-        <li><a href="{{route('home')}}" >shop </a></li>
-        <li><a href="{{route('home')}}">blog </a></li>
-        <li><a href="{{route('home')}}">about</a> </li>
+        <li><a href="{{route('home')}}" >@lang('shop') </a></li>
+        <li><a href="{{route('home')}}">@lang('blog') </a></li>
+        <li><a href="{{route('home')}}">@lang('about')</a> </li>
         <li><a href="{{route('products.cart')}}"><i class="fas fa-bag-shopping">
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
             {{ \Cart::getTotalQuantity()}}
@@ -79,7 +67,7 @@
             </ul>
           </div>
         @else
-        <li><a href="{{route('users.login')}}">Login</a> </li>
+        <li><a href="{{route('users.login')}}">@lang('Login')</a> </li>
         @endauth
     </ul>
     <div id="bar" class="mobile">

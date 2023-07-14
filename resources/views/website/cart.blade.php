@@ -1,7 +1,7 @@
 @extends('website.main')
 @section('content')
 <section class="featured-products">
-    <h2>Cart List</h2>
+    <h2>@lang('Cart List')</h2>
     @if(\Cart::getTotalQuantity()>0)
     <table class="table table-striped table-bordered">
         <thead>
@@ -47,7 +47,7 @@
 
 
     <div class="mt-3 mb-3 mx-3">
-      <h3 class="text-success">Total:{{ \Cart::getTotal() }} Egp </h3>
+      <h3 class="text-success">@lang('Total'):{{ \Cart::getTotal() }} @lang('Egp') </h3>
       @if(count($items)>0)
       <form method="post" action="{{ route('cart.clear')}}" class="d-inline mb-3"> 
         @csrf       
