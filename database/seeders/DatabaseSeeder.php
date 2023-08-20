@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,7 +21,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // \App\Models\User::factory(10)->create();
-
+        $this->call(PermissionSeeder::class);
+        $this->call(RoleSeeder::class);
          $admin=User::create([
              'name' => 'admin',
              'email' => 'admin@admin.com',
@@ -27,13 +30,18 @@ class DatabaseSeeder extends Seeder
              'password'=>Hash::make('123456'),
              'is_admin'=>1
          ]);
+        //  $permissions=Permission::all();
+         $role=Role::where('name','Admin')->first();
+        //  $role->syncPermissions($permissions);
+         $admin->assignRole($role);
+
          $path='public/dist/img/avatar4.png';
             $admin->addMedia($path)
             ->toMediaCollection('admin_images');
             $newPath=$admin->getFirstMedia('admin_images')->getPath();   
             File::copy($newPath,$path);
 
-         $this->call(CategorySeeder::class);
-         $this->call(ProductSeeder::class);
+        //  $this->call(CategorySeeder::class);
+        //  $this->call(ProductSeeder::class);
     }
 }

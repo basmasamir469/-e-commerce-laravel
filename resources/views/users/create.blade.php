@@ -31,6 +31,19 @@
       @enderror  
       </div>  
 
+      <div class="form-group">
+        <label for="inputEstimatedBudget">@lang('Roles')</label>
+        <select id="my-select" class="form-control" name="roles[]" multiple>
+          <option value="">@lang('Choose')</option>
+          @foreach ($roles as $role )
+          <option value="{{$role->id}}">{{$role->name}}</option>
+          @endforeach
+        </select>
+      @error('roles')
+      <small  class="form-text text-danger">{{$message}}</small>
+      @enderror      
+    </div>
+    
       <div class="mb-3">
         <label for="formFile" class="form-label">@lang('Password')</label>
         <input class="form-control" name="password" type="password" id="formFile">

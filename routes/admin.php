@@ -19,11 +19,12 @@ Route::group(['prefix'=>'admin'],function(){
     Auth::routes(["register"=>'false']);
 });
 Route::group(['prefix' => LaravelLocalization::setLocale().'/admin/',
-'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth','AdminAccess']
+'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth','AdminAccess','AutoCheckPermission']
 ],function(){
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard'); 
     Route::resource('users','UserController');
     Route::resource('products','ProductController');
+    Route::resource('roles', 'RoleController');
     Route::resource('Categories','CategoryController');
     Route::resource('orders','OrderController');
     Route::get('orders/accept/{id}','OrderController@acceptOrders')->name('orders.accept');

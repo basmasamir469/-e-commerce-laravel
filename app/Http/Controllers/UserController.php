@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -33,7 +33,8 @@ return view('users.index',compact('users'));
 */
 public function create()
 {
-return view('users.create');
+$roles=Role::all();
+return view('users.create',compact('roles'));
 }
 /**
 * Store a newly created resource in storage.
@@ -47,11 +48,13 @@ $this->validate($request, [
 'name' => 'required',
 'email' => 'required|email|unique:users,email',
 'password' => 'required|same:confirm-password',
-'phone_number' => 'required'
+'phone_number' => 'required',
+'roles'=>'required'
 ]);
 $input = $request->all();
 $input['password'] = Hash::make($input['password']);
 $user = User::create($input);
+$user->assignRole($request->input('roles'));
 flash(__('User stored successfully'))->success();
 return redirect()->route('users.index');
 }
@@ -75,7 +78,8 @@ return view('users.show',compact('user'));
 public function edit($id)
 {
 $user = User::find($id);
-return view('users.edit',compact('user'));
+$roles=Role::all();
+return view('users.edit',compact('user','roles'));
 }
 /**
 * Update the specified resource in storage.
@@ -90,7 +94,8 @@ $this->validate($request, [
 'name' => 'required',
 'email' => 'required|email|unique:users,email,'.$id,
 'password' => 'same:confirm-password',
-'phone_number' => 'required'
+'phone_number' => 'required',
+'roles' => 'required'
 ]);
 $input = $request->all();
 if(!empty($input['password'])){
@@ -100,6 +105,8 @@ $input = Arr::except($input,array('password'));
 }
 $user = User::find($id);
 $user->update($input);
+DB::table('model_has_roles')->where('model_id',$id)->delete();
+$user->assignRole($request->input('roles'));
 flash(__('User updated successfully'))->success();
 return redirect()->route('users.index');
 }

@@ -39,7 +39,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']],function(){
     Route::get('/',  [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); 
-    Route::group(['middleware' => [ 'auth']
+    Route::group(['middleware' => [ 'auth','AutoCheckPermission']
     ],function(){
         
         // product cart
