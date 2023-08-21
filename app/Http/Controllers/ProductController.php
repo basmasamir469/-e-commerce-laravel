@@ -6,6 +6,7 @@ use App\Http\Requests\Products\storeProductRequest;
 use App\Http\Requests\Products\updateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
@@ -30,7 +31,8 @@ class ProductController extends Controller
     {
         //
         $categories=Category::all();
-        return view('products.create',compact('categories'));
+        $users=User::role('Owner')->get();
+        return view('products.create',compact('categories','users'));
     }
 
     /**
@@ -78,7 +80,8 @@ class ProductController extends Controller
         //
         $product=Product::findOrFail($id);
         $categories=Category::all();
-        return view('products.edit',compact('product','categories'));
+        $users=User::role('Owner')->get();
+        return view('products.edit',compact('product','categories','users'));
     }
 
     /**

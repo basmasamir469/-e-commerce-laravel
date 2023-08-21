@@ -47,10 +47,10 @@ class PermissionSeeder extends Seeder
         'products.create,products.store',
         'products.edit,products.update',
         'products.destroy',
-        'categories.index',
-        'categories.create,categories.store',
-        'categories.edit,categories.update',
-        'categories.destroy'
+        'Categories.index',
+        'Categories.create,Categories.store',
+        'Categories.edit,Categories.update',
+        'Categories.destroy'
     ];
     foreach($permissions as $key => $permission){
         Permission::create(['name'=>$permissions[$key],'routes'=>$routes[$key]]);

@@ -53,4 +53,8 @@ class User extends Authenticatable implements HasMedia
     public function cart(){
         return $this->hasOne(Cart::class);
     }
+
+    public function products(){
+        return $this->hasMany(Product::class,'owner_id');
+    }
 }

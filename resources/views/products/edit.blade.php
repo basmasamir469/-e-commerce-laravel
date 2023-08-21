@@ -87,6 +87,28 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <div class="row">
+        <div class="col-5">
+          <label for="inputEstimatedBudget">@lang('Owner')</label>
+            <select id="my-select" class="form-control" name="owner_id">
+              <option value="">@lang('Choose')</option>
+              @if(auth()->user()->hasRole('Owner'))
+              <option value="{{auth()->user()->id}}" selected>{{auth()->user()->name}}</option>
+              @elseif(auth()->user()->hasRole('Admin'))
+              @foreach ($users as $user )
+              <option value="{{$user->id}}" @if($product->owner_id==$user->id) selected @endif>{{$user->name}}</option>
+              @endforeach
+              @endif
+            </select>
+          @error('owner_id')
+          <small  class="form-text text-danger">{{$message}}</small>
+          @enderror      
+        </div>
+      </div>
+    </div>
+
+
     <input type="submit" value="{{__('edit product')}}" class="btn btn-success float-right">
   </form>
 

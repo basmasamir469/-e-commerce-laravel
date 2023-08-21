@@ -30,4 +30,8 @@ class Product extends Model implements HasMedia
     public function carts(){
         return $this->belongsToMany(Cart::class)->withPivot(['price','quantity']);
     }
+
+    public function owner(){
+        return $this->belongsTo(User::class,'owner_id');
+    }
 }

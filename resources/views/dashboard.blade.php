@@ -6,6 +6,7 @@
 
 @section('content')
 <div class="row">
+  @role('Admin')
     <div class="col-md-3 col-sm-6 col-12">
       <div class="info-box">
         <span class="info-box-icon bg-info"><i class="far fa-user"></i></span>
@@ -58,7 +59,20 @@
         <!-- /.info-box -->
       </div>
   
-  
-  
-</div>  
+@else
+<div class="col-md-3 col-sm-6 col-12">
+  <div class="info-box">
+    <span class="info-box-icon bg-success"><i class="fab fa-product-hunt"></i></span>
+
+    <div class="info-box-content">
+      <span class="info-box-text">@lang('Products')</span>
+      <span class="info-box-number">{{$product->count()}}</span>
+    </div>
+    <!-- /.info-box-content -->
+  </div>
+  <!-- /.info-box -->
+</div>
+
+@endrole
+</div>
 @endsection

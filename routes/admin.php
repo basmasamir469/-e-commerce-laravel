@@ -19,7 +19,7 @@ Route::group(['prefix'=>'admin'],function(){
     Auth::routes(["register"=>'false']);
 });
 Route::group(['prefix' => LaravelLocalization::setLocale().'/admin/',
-'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth','AdminAccess','AutoCheckPermission']
+'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth','AutoCheckPermission']
 ],function(){
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard'); 
     Route::resource('users','UserController');
