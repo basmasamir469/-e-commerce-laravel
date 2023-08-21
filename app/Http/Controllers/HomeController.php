@@ -27,11 +27,11 @@ class HomeController extends Controller
     public function index()
     {
         $products=Product::all();
-        if(Auth::check() && auth()->user()->hasRole('User')){
-                return view('website.home',compact('products'));
+        if(Auth::check() && auth()->user()->hasAnyRole('Admin','Owner')){
+            return view('dashboard');
         }
-        elseif(Auth::check()&&auth()->user())
-        return view('dashboard');
+        return view('website.home',compact('products'));
+
 
     }
 

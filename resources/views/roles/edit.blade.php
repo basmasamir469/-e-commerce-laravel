@@ -18,7 +18,7 @@
           @method('PATCH')
     <div class="form-group">
     <label for="inputEstimatedBudget">@lang('Name')</label>
-    <input type="text" name="name" value="{{$user->name}}" id="inputEstimatedBudget" class="form-control">
+    <input type="text" name="name" value="{{$role->name}}" id="inputEstimatedBudget" class="form-control">
     @error('name')
     <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
     @enderror
@@ -26,13 +26,20 @@
 
     <div class="form-group">
       <label for="inputEstimatedBudget">@lang('Permissions')</label>
-      @dump($role->permissions())
-      <select id="my-select" class="form-control" name="permissions[]" multiple>
+      @foreach ($permissions as $permission )
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="{{$permission->id}}" name="permissions[]"   @if(in_array($permission->name,$role->permissions->pluck('name')->toArray())) checked @endif id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+          {{$permission->name}}
+        </label>
+      </div>
+      @endforeach
+      {{-- <select id="my-select" class="form-control" name="permissions[]" multiple>
         <option value="">@lang('Choose')</option>
         @foreach ($permissions as $permission )
-        <option value="{{$permission->id}}"  @if(in_array($permission->name,$role->permissions->pluck('name'))) selected @endif>{{$permission->name}}</option>
+        <option value="{{$permission->id}}"  @if(in_array($permission->name,$role->permissions->pluck('name')->toArray())) selected @endif>{{$permission->name}}</option>
         @endforeach
-      </select>
+      </select> --}}
     @error('permissions')
     <small  class="form-text text-danger">{{$message}}</small>
     @enderror      

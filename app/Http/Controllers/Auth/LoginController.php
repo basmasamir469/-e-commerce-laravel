@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Spatie\Permission\Models\Role;
 
 class LoginController extends Controller
 {
@@ -77,6 +78,8 @@ class LoginController extends Controller
             $user->provider_id = $data->id;
             $user->avatar=$data->avatar;
             $user->save();
+            $role=Role::where('name','User')->first();
+            $user->assignRole($role);
         }
 
         Auth::login($user);

@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $products=Product::paginate(10);
+        $products=auth()->user()->hasRole('Owner')? auth()->user()->products()->paginate(10):Product::paginate(10);
         return view('products.index',compact('products'));
     }
 

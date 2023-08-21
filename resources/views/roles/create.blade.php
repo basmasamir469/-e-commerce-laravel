@@ -25,12 +25,20 @@
     </div>
       <div class="form-group">
         <label for="inputEstimatedBudget">@lang('Permissions')</label>
-        <select id="my-select" class="form-control" name="permissions[]" multiple>
+        @foreach ($permissions as $permission )
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="{{$permission->id}}" name="permissions[]" id="defaultCheck1">
+          <label class="form-check-label" for="defaultCheck1">
+            {{$permission->name}}
+          </label>
+        </div>
+        @endforeach
+        {{-- <select id="my-select" class="form-control" name="permissions[]" multiple>
           <option value="">@lang('Choose')</option>
           @foreach ($permissions as $permission )
           <option value="{{$permission->id}}">{{$permission->name}}</option>
           @endforeach
-        </select>
+        </select> --}}
       @error('permissions')
       <small  class="form-text text-danger">{{$message}}</small>
       @enderror      

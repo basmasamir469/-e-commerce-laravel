@@ -33,10 +33,10 @@
 
       <div class="form-group">
         <label for="inputEstimatedBudget">@lang('Roles')</label>
-        <select id="my-select" class="form-control" name="roles[]" multiple>
+        <select id="my-select" class="form-control" name="roles">
           <option value="">@lang('Choose')</option>
           @foreach ($roles as $role )
-          <option value="{{$role->id}}" @if(in_array($role->name,$user->getRolesNames())) selected @endif>{{$role->name}}</option>
+          <option value="{{$role->id}}" @if(in_array($role->name,$user->getRoleNames()->toArray())) selected @endif>{{$role->name}}</option>
           @endforeach
         </select>
       @error('roles')

@@ -148,5 +148,14 @@
     "Enter phone number":"ادخل رقم التليفون",
     "OR":"او",
     "Remember Me":"تذكرني",
-    "Create New User":"اضافة مستخدم جديد"
+    "Create New User":"اضافة مستخدم جديد",
+    "Add Role":"اضافة رتبة",
+    "Edit Role":"تعديل رتبة",
+    "Create New Role":"اضافة رتبة جديدة",
+    "Permissions":"الصلاحيات",
+    "Roles":"الرتب",
+    "roles":"الرتب",
+    "add role":"اضافة رتبة",
+    "edit role":"تعديل رتبة",
+    "add Role":"اضافة"
 }

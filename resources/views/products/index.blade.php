@@ -23,7 +23,7 @@
       </tr>
     </thead>
     <tbody>
-        @foreach (auth()->user()->hasRole('Owner')? auth()->user()->products:$products as $product )
+        @foreach ($products as $product )
       <tr>
         <th scope="row">{{$product->id}}</th>
         <td>{{$product->product_name}}</td>
